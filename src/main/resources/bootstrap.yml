@@ -1,0 +1,33 @@
+server:
+  error:
+    include-stacktrace: never
+  port: 8083
+
+spring:
+  application:
+    name: cf-msa-contents
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: dev
+
+  cloud:
+    config:
+      uri: http://msa-config.cf.intl
+
+---
+spring:
+  profiles: local
+
+  cloud:
+    config:
+      enabled: false
+
+security:
+  swagger:
+    enabled: true
+  oauth2:
+    jwt:
+      signkey: jmworksJwtSecret
