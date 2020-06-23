@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/contents")
+@RequestMapping("/api/book")
 public class ContentController {
 
+    @GetMapping("/info")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public String bookInfo() {
+        return "Message From Book API 서버 : Object Storage(k8s)를 사용하여 이미지도 넣어보자 ^^";
+    }
 
     @GetMapping("/user")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
